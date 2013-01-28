@@ -1,0 +1,35 @@
+SearchCoreTest
+==============
+Author: kewenya
+mail:   yayake0909@gmail.com
+/*
+SearchCore 为C语音编写，ios、android、symbian都可以用
+1.姓名搜索：输入汉字、模糊拼音，可匹配连续的汉字
+2.号码搜索
+3.支持T9键盘的数字对应字母的匹配，只需设置MatchFunction为键盘26个字母与数字对应的串
+*/
+
+1、注意 Array使用，定义后需进行初始化ArrayInit，使用后需释放资源Reset
+例如:
+Array text;
+ArrayInit( &text );
+text.Reset( &text );
+
+
+
+2、搜索结束释放资源
+
+//释放搜索树
+FreeSearchTree(&tree);
+
+//初始化SearchTreeInit时如果加载了多音字 最需释放多音字资源
+ReleaseMultiPYinWords();
+
+
+
+3、传进去的字符串都只为unicode编码
+
+4、多音字搜索需添加字库multipy_unicode.dat
+
+5、symbian需打开SearchCore.c中的
+CloseSTDLIB();// without this, there will be memory leak 
