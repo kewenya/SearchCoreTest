@@ -4,6 +4,8 @@ Author: kewenya
 mail:   yayake0909@gmail.com
 /*
 SearchCore 为C语音编写，ios、android、symbian都可以用
+内存占用： 10000个人2M左右
+效率：6K人搜索，100ms左右（iphone4）
 1.姓名搜索：输入汉字、模糊拼音，可匹配连续的汉字
 2.号码搜索
 3.支持T9键盘的数字对应字母的匹配，只需设置MatchFunction为键盘26个字母与数字对应的串
