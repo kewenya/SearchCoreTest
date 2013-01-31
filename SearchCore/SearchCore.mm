@@ -1473,8 +1473,10 @@ void FreeSearchTree(SearchTree* tree)
 {
 	int i = 0;
 	Array* cache = 0;
-	if( tree->iMatchFunc )
+	if( tree->iMatchFunc ) {
 		free(tree->iMatchFunc);
+		tree->iMatchFunc = NULL;
+	}
 	
 	cache = &tree->SearchDataArray;
 	for(i = 0;i < cache->size;i ++)
@@ -1492,17 +1494,22 @@ void FreeSearchTree(SearchTree* tree)
 		FreeSearchPos((SearchPos*)cache->GetValue(cache,i));
 	cache->Reset(cache);
 	
-	if( tree->iCurSeachData )
+	if( tree->iCurSeachData ) {
 		FreeSearchData(tree->iCurSeachData);
+		tree->iCurSeachData = NULL;
+	}
     
-    if (searchPosMalloc) {
-        free(searchPosMalloc);
-        searchPosMalloc = NULL;
-    }
+	cache = &searchPosMallocArray;
+	for(i = 0;i < cache->size;i ++)
+		FreeSearchPos((SearchPos*)cache->GetValue(cache,i));
+	cache->Reset(cache);
+    
+	searchPosMallocSize=0;
+	searchPosPtrMallocSize=0;
     
     if (searchPosPtrArray) {
         free(searchPosPtrArray);
-        searchPosMalloc = NULL;
+        searchPosPtrArray = NULL;
     }
 }
 
