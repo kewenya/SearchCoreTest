@@ -47,7 +47,7 @@ void ArrayInsert(Array* A,int value,int pos)
 		{
 			ptr = A->pDataEnd;
 			i = size;
-			ptr_index = A->pIndexData + A->pIndexNum - 1;
+			ptr_index = A->pIndexData + (A->size >> MALLOC_NUM);
 			while(i > pos)
 			{
 				if( ptr == *ptr_index )
